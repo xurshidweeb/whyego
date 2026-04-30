@@ -104,7 +104,7 @@ const Services = () => {
         {/* Popular Badge */}
         {service.popular && (
           <motion.div
-            className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 glass-button text-white text-sm font-semibold rounded-full z-30"
+            className="relative -top-4 left-1/2 transform -translate-x-1/2 px-4 py-2 glass-button text-white text-sm font-semibold rounded-full z-30"
             animate={{
               scale: [1, 1.05, 1],
             }}
