@@ -1,0 +1,357 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-white;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .glass-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.7) 45%,
+      rgba(255, 255, 255, 0.92) 100%
+    );
+    font-weight: 700;
+  }
+
+  .glow-text {
+    @apply glass-text;
+  }
+
+  /* SMOOTH GLOWING HERO TEXT */
+  .glow-hero-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.75) 45%,
+      rgba(255, 255, 255, 0.92) 100%
+    );
+    font-weight: 900;
+    text-shadow:
+      0 0 20px rgba(255, 255, 255, 0.4),
+      0 0 40px rgba(255, 255, 255, 0.2),
+      0 0 60px rgba(255, 255, 255, 0.15);
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))
+      drop-shadow(0 0 40px rgba(255, 255, 255, 0.15));
+    animation: smooth-glow 3s ease-in-out infinite;
+  }
+
+  /* FLICKERING GLOW EFFECT */
+  .flickering-glow {
+    position: relative;
+  }
+
+  .flickering-glow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.08) 40%,
+      transparent 70%
+    );
+    z-index: -1;
+    filter: blur(15px);
+    animation: broken-bulb 2.5s steps(12) infinite;
+  }
+
+  @keyframes broken-bulb {
+    0%, 5% { opacity: 0.8; transform: scale(1); }
+    6%, 10% { opacity: 0.1; transform: scale(0.95); }
+    11%, 15% { opacity: 1; transform: scale(1.02); }
+    16%, 20% { opacity: 0.3; transform: scale(0.98); }
+    21%, 25% { opacity: 0.9; transform: scale(1); }
+    26%, 30% { opacity: 0.05; transform: scale(0.96); }
+    31%, 35% { opacity: 1; transform: scale(1.01); }
+    36%, 40% { opacity: 0.4; transform: scale(0.99); }
+    41%, 45% { opacity: 0.7; transform: scale(1); }
+    46%, 50% { opacity: 0.2; transform: scale(0.97); }
+    51%, 55% { opacity: 1; transform: scale(1.03); }
+    56%, 60% { opacity: 0.6; transform: scale(0.98); }
+    61%, 65% { opacity: 0.9; transform: scale(1); }
+    66%, 70% { opacity: 0.15; transform: scale(0.95); }
+    71%, 75% { opacity: 1; transform: scale(1.02); }
+    76%, 80% { opacity: 0.5; transform: scale(0.99); }
+    81%, 85% { opacity: 0.8; transform: scale(1); }
+    86%, 90% { opacity: 0.25; transform: scale(0.96); }
+    91%, 95% { opacity: 1; transform: scale(1.01); }
+    96%, 100% { opacity: 0.7; transform: scale(1); }
+  }
+
+  @keyframes smooth-glow {
+    0% {
+      text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.15),
+        0 0 60px rgba(255, 255, 255, 0.08);
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25))
+        drop-shadow(0 0 40px rgba(255, 255, 255, 0.1));
+    }
+    50% {
+      text-shadow:
+        0 0 30px rgba(255, 255, 255, 0.5),
+        0 0 50px rgba(255, 255, 255, 0.3),
+        0 0 80px rgba(255, 255, 255, 0.15);
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))
+        drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+    }
+    100% {
+      text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(255, 255, 255, 0.15),
+        0 0 60px rgba(255, 255, 255, 0.08);
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25))
+        drop-shadow(0 0 40px rgba(255, 255, 255, 0.1));
+    }
+  }
+
+  /* TRUE iOS LIQUID GLASS - PREMIUM APPLE STYLE */
+  .glass-surface {
+    background: rgba(255, 255, 255, 0.04);
+    -webkit-backdrop-filter: blur(60px);
+    backdrop-filter: blur(60px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow:
+      /* Outer depth shadow */
+      0 20px 50px rgba(0, 0, 0, 0.3),
+      0 10px 25px rgba(0, 0, 0, 0.15),
+      /* Inner highlight for depth */ inset 0 1px 2px rgba(255, 255, 255, 0.15),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-clip: padding-box;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  /* Inner light reflection layer */
+  .glass-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 120% 90% at 15% 10%,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.08) 30%,
+      rgba(255, 255, 255, 0.01) 70%,
+      transparent 100%
+    );
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition:
+      opacity 500ms ease,
+      transform 500ms ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle soft gradient overlay */
+  .glass-surface::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.02) 25%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.02) 100%
+    );
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: overlay;
+  }
+
+  .glass-surface > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-surface:hover::before {
+    opacity: 1.2;
+    transform: translate3d(-2%, -4%, 0);
+  }
+
+  .glass-surface:hover::after {
+    opacity: 0.8;
+  }
+
+  .glass-surface:hover {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.35),
+      0 12px 30px rgba(0, 0, 0, 0.18),
+      inset 0 1px 2px rgba(255, 255, 255, 0.18),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-effect {
+    @apply glass-surface;
+  }
+
+  .neon-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* GLASS BUTTONS - PREMIUM STYLE */
+  .glass-button {
+    background: rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.25),
+      0 8px 20px rgba(0, 0, 0, 0.15),
+      inset 0 1px 2px rgba(255, 255, 255, 0.2),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-clip: padding-box;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Light reflection for buttons */
+  .glass-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+    transition: transform 600ms ease;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-button > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 20px 45px rgba(0, 0, 0, 0.3),
+      0 10px 25px rgba(0, 0, 0, 0.2),
+      inset 0 1px 2px rgba(255, 255, 255, 0.25),
+      inset 0 -1px 2px rgba(255, 255, 255, 0.06);
+    transform: translateY(-3px);
+  }
+
+  .glass-button:hover::before {
+    transform: translate3d(-30%, -30%, 0) rotate(-45deg);
+  }
+
+  .glass-button:active {
+    transform: translateY(-1px);
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .cyberpunk-gradient {
+    background: linear-gradient(135deg, #00d9ff 0%, #8b5cf6 50%, #ec4899 100%);
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0;
+  }
+
+  .glass-soft-border {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+
+  .glass-inset {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0.12)
+  );
+}
+
+/* Cursor effects */
+.cursor-glow {
+  cursor: pointer;
+  position: relative;
+}
